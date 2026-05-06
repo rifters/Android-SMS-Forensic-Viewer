@@ -1,5 +1,6 @@
 /* ============================================================
    style.css — shared styles for both timeline and thread pages
+   Forensic-report look inspired by Cellebrite / Oxygen / AXIOM
    ============================================================ */
 
 *, *::before, *::after {
@@ -9,21 +10,40 @@
 }
 
 :root {
-    --color-primary:      #1565C0;
-    --color-secondary:    #2E7D32;
-    --color-accent:       #E65100;
-    --color-bg:           #F0F4F8;
+    /* ── Core palette ─────────────────────────────────────── */
+    --color-primary:      #0C2D48;   /* deep navy  */
+    --color-primary-mid:  #145DA0;   /* medium blue */
+    --color-primary-lt:   #2E86AB;   /* lighter blue */
+    --color-secondary:    #1B5E20;   /* dark green (outgoing) */
+    --color-accent:       #E65100;   /* alert orange */
+    --color-bg:           #ECEFF1;
     --color-surface:      #FFFFFF;
-    --color-border:       #E0E0E0;
-    --color-text:         #212121;
-    --color-text-muted:   #757575;
+    --color-border:       #B0BEC5;
+    --color-text:         #1C2B36;
+    --color-text-muted:   #546E7A;
+    --color-text-meta:    #78909C;
     --color-incoming-bg:  #FFFFFF;
-    --color-outgoing-bg:  #DCF8C6;
-    --color-highlight:    #FFF59D;
-    --color-separator:    #BDBDBD;
-    --radius:             12px;
-    --shadow:             0 1px 4px rgba(0,0,0,0.12);
-    --font:               -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --color-outgoing-bg:  #E8F5E9;
+    --color-highlight:    #FFF176;
+    --color-highlight-ring: #F9A825;
+    --color-separator:    #90A4AE;
+
+    /* ── Geometry & typography ────────────────────────────── */
+    --radius:             8px;
+    --shadow:             0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08);
+    --shadow-elevated:    0 4px 12px rgba(0,0,0,0.18);
+    --font:               -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    --font-mono:          "SFMono-Regular", "Consolas", "Lucida Console", monospace;
+
+    /* ── Participant / sender color palette (8 slots) ──────── */
+    --sender-1:  #1565C0;   /* blue        */
+    --sender-2:  #2E7D32;   /* green       */
+    --sender-3:  #6A1B9A;   /* purple      */
+    --sender-4:  #BF360C;   /* deep orange */
+    --sender-5:  #00695C;   /* teal        */
+    --sender-6:  #1A237E;   /* deep blue   */
+    --sender-7:  #880E4F;   /* dark pink   */
+    --sender-8:  #4E342E;   /* brown       */
 }
 
 body {
@@ -34,7 +54,7 @@ body {
 }
 
 a {
-    color: var(--color-primary);
+    color: var(--color-primary-mid);
     text-decoration: none;
 }
 a:hover { text-decoration: underline; }
@@ -43,12 +63,13 @@ a:hover { text-decoration: underline; }
 .date-separator {
     display: flex;
     align-items: center;
-    margin: 24px 0 8px;
+    margin: 20px 0 6px;
     color: var(--color-text-muted);
-    font-size: 0.78rem;
-    font-weight: 600;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
 }
 .date-separator::before,
 .date-separator::after {
@@ -58,8 +79,12 @@ a:hover { text-decoration: underline; }
     background: var(--color-separator);
 }
 .date-separator span {
-    padding: 0 10px;
+    padding: 0 12px;
     white-space: nowrap;
+    background: var(--color-bg);
+    border: 1px solid var(--color-separator);
+    border-radius: 10px;
+    line-height: 1.8;
 }
 
 /* ── Attachment badges ───────────────────────────────────── */
@@ -70,40 +95,70 @@ a:hover { text-decoration: underline; }
     gap: 4px;
 }
 .attachment {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
     padding: 2px 8px;
     border-radius: 4px;
-    font-size: 0.78rem;
+    font-size: 0.75rem;
+    font-weight: 500;
     background: var(--color-bg);
     border: 1px solid var(--color-border);
 }
-.image-att { background: #E3F2FD; border-color: #90CAF9; }
-.video-att { background: #EDE7F6; border-color: #B39DDB; }
-.audio-att { background: #E8F5E9; border-color: #A5D6A7; }
+.image-att { background: #E3F2FD; border-color: #90CAF9; color: #0D47A1; }
+.video-att  { background: #EDE7F6; border-color: #B39DDB; color: #4A148C; }
+.audio-att  { background: #E8F5E9; border-color: #A5D6A7; color: #1B5E20; }
 
 /* ── Type badge (sms / mms) ──────────────────────────────── */
 .type-badge {
     display: inline-block;
-    padding: 1px 6px;
-    border-radius: 4px;
-    font-size: 0.7rem;
-    font-weight: 600;
+    padding: 1px 7px;
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
     vertical-align: middle;
+    border: 1px solid transparent;
 }
-.type-badge.sms { background: #E3F2FD; color: #1565C0; }
-.type-badge.mms { background: #FFF3E0; color: #E65100; }
+.type-badge.sms { background: #E3F2FD; color: #0D47A1; border-color: #90CAF9; }
+.type-badge.mms { background: #FFF3E0; color: #BF360C; border-color: #FFCC80; }
 
 /* ── Group tag ───────────────────────────────────────────── */
 .group-tag {
-    display: inline-block;
-    padding: 1px 6px;
-    border-radius: 4px;
-    font-size: 0.7rem;
-    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 1px 7px;
+    border-radius: 3px;
+    font-size: 0.65rem;
+    font-weight: 700;
     background: #F3E5F5;
-    color: #7B1FA2;
+    color: #6A1B9A;
+    border: 1px solid #CE93D8;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
     vertical-align: middle;
     margin-right: 4px;
 }
+
+/* ── Sender color utility classes (set by JS via data-color) */
+[data-color="1"] .sender, [data-color="1"] .bubble .sender { color: var(--sender-1); }
+[data-color="2"] .sender, [data-color="2"] .bubble .sender { color: var(--sender-2); }
+[data-color="3"] .sender, [data-color="3"] .bubble .sender { color: var(--sender-3); }
+[data-color="4"] .sender, [data-color="4"] .bubble .sender { color: var(--sender-4); }
+[data-color="5"] .sender, [data-color="5"] .bubble .sender { color: var(--sender-5); }
+[data-color="6"] .sender, [data-color="6"] .bubble .sender { color: var(--sender-6); }
+[data-color="7"] .sender, [data-color="7"] .bubble .sender { color: var(--sender-7); }
+[data-color="8"] .sender, [data-color="8"] .bubble .sender { color: var(--sender-8); }
+
+/* ── Left-border accent matching sender slot ──────────────── */
+.msg[data-color="1"] { border-left-color: var(--sender-1) !important; }
+.msg[data-color="2"] { border-left-color: var(--sender-2) !important; }
+.msg[data-color="3"] { border-left-color: var(--sender-3) !important; }
+.msg[data-color="4"] { border-left-color: var(--sender-4) !important; }
+.msg[data-color="5"] { border-left-color: var(--sender-5) !important; }
+.msg[data-color="6"] { border-left-color: var(--sender-6) !important; }
+.msg[data-color="7"] { border-left-color: var(--sender-7) !important; }
+.msg[data-color="8"] { border-left-color: var(--sender-8) !important; }
