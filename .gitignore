@@ -1,0 +1,20 @@
+# Android build outputs
+*.iml
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# App build output
+app/build/
+
+# Gradle wrapper jar (keep gradlew scripts, skip the jar)
+gradle/wrapper/gradle-wrapper.jar
+
+# User-specific Android Studio files
+*.hprof

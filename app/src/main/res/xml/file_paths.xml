@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!--
+        Expose the app's external Documents directory via FileProvider so that
+        the generated HTML files can be shared with browsers and file managers.
+    -->
+    <external-files-path
+        name="timeline_export"
+        path="Documents/TimelineExport/" />
+</paths>

@@ -1,0 +1,109 @@
+/* ============================================================
+   style.css — shared styles for both timeline and thread pages
+   ============================================================ */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --color-primary:      #1565C0;
+    --color-secondary:    #2E7D32;
+    --color-accent:       #E65100;
+    --color-bg:           #F0F4F8;
+    --color-surface:      #FFFFFF;
+    --color-border:       #E0E0E0;
+    --color-text:         #212121;
+    --color-text-muted:   #757575;
+    --color-incoming-bg:  #FFFFFF;
+    --color-outgoing-bg:  #DCF8C6;
+    --color-highlight:    #FFF59D;
+    --color-separator:    #BDBDBD;
+    --radius:             12px;
+    --shadow:             0 1px 4px rgba(0,0,0,0.12);
+    --font:               -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    font-family: var(--font);
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.5;
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+/* ── Date separator ──────────────────────────────────────── */
+.date-separator {
+    display: flex;
+    align-items: center;
+    margin: 24px 0 8px;
+    color: var(--color-text-muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+.date-separator::before,
+.date-separator::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--color-separator);
+}
+.date-separator span {
+    padding: 0 10px;
+    white-space: nowrap;
+}
+
+/* ── Attachment badges ───────────────────────────────────── */
+.attachments {
+    margin-top: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+.attachment {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+}
+.image-att { background: #E3F2FD; border-color: #90CAF9; }
+.video-att { background: #EDE7F6; border-color: #B39DDB; }
+.audio-att { background: #E8F5E9; border-color: #A5D6A7; }
+
+/* ── Type badge (sms / mms) ──────────────────────────────── */
+.type-badge {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    vertical-align: middle;
+}
+.type-badge.sms { background: #E3F2FD; color: #1565C0; }
+.type-badge.mms { background: #FFF3E0; color: #E65100; }
+
+/* ── Group tag ───────────────────────────────────────────── */
+.group-tag {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    background: #F3E5F5;
+    color: #7B1FA2;
+    vertical-align: middle;
+    margin-right: 4px;
+}

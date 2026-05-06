@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS / MMS Timeline</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/timeline.css">
+</head>
+<body class="timeline-page">
+
+    <div class="page-header">
+        <h1>📱 Message Timeline</h1>
+        <p class="subtitle"><!-- MESSAGE COUNT --> messages across <!-- THREAD COUNT --> conversations</p>
+        <div class="toolbar">
+            <input type="text" id="search" placeholder="🔍 Search messages…" oninput="filterMessages(this.value)">
+            <label for="dateJump">Jump to date:</label>
+            <input type="date" id="dateJump" onchange="jumpToDate(this.value)">
+        </div>
+    </div>
+
+    <!--
+        Each message block follows this pattern:
+        ─────────────────────────────────────────────
+        <div class="msg incoming" data-ts="1715000000000" data-thread="12"
+             onclick="openThread(12, 8842)"
+             title="Mom — 2:14 PM">
+            <div class="msg-meta">
+                <span class="time">2:14 PM</span>
+                <span class="thread-name">Mom</span>
+                <span class="type-badge sms">sms</span>
+            </div>
+            <div class="sender">Mom</div>
+            <div class="text">We're waiting</div>
+        </div>
+        ─────────────────────────────────────────────
+    -->
+    <div id="timeline">
+        <!-- Generated message blocks go here -->
+    </div>
+
+    <script src="assets/script.js"></script>
+</body>
+</html>

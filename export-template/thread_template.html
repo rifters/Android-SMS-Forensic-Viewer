@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><!-- THREAD NAME --></title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/thread.css">
+</head>
+<body class="thread-page">
+
+    <div class="thread-header <!-- group OR direct -->">
+        <a href="timeline.html" class="back-btn">← Timeline</a>
+        <h1><!-- THREAD NAME --></h1>
+        <p class="participants"><!-- PARTICIPANT NAMES --></p>
+    </div>
+
+    <!--
+        Each message bubble follows this pattern:
+        ─────────────────────────────────────────────
+        Incoming:
+        <div id="msg_8842" class="message incoming">
+            <div class="bubble">
+                <div class="sender">Mom</div>
+                <div class="text">We're waiting</div>
+                <div class="time">2:14 PM</div>
+            </div>
+        </div>
+
+        Outgoing:
+        <div id="msg_8843" class="message outgoing">
+            <div class="bubble">
+                <div class="sender">Me</div>
+                <div class="text">Be right there!</div>
+                <div class="time">2:15 PM</div>
+            </div>
+        </div>
+        ─────────────────────────────────────────────
+
+        When navigated to via #msg_<id>, the thread.js script will
+        add the class "highlight" and scroll the element into view.
+    -->
+    <div id="messages">
+        <!-- Generated message bubbles go here -->
+    </div>
+
+    <script src="assets/thread.js"></script>
+</body>
+</html>
