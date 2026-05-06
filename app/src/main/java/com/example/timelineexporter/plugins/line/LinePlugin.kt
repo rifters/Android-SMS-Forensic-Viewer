@@ -17,10 +17,15 @@ import java.io.File
  */
 class LinePlugin : MessageSourcePlugin {
 
-    override fun isAvailable(context: Context): Boolean =
-        ShizukuHelper.isAvailable() ||
-        RootHelper.isAvailable() ||
-        importFileExists(context)
+    // Cached availability — set during isAvailable() to avoid re-evaluating in loadMessages()
+    private var shizukuAvailable = false
+    private var rootAvailable    = false
+
+    override fun isAvailable(context: Context): Boolean {
+        shizukuAvailable = ShizukuHelper.isAvailable()
+        rootAvailable    = RootHelper.isAvailable()
+        return shizukuAvailable || rootAvailable || importFileExists(context)
+    }
 
     override fun loadMessages(
         context: Context,
@@ -28,10 +33,10 @@ class LinePlugin : MessageSourcePlugin {
     ): List<Message> {
         val reader = LineReader()
         return when {
-            ShizukuHelper.isAvailable() -> reader.readViaShizuku()
-            RootHelper.isAvailable()    -> reader.readViaRoot()
-            importFileExists(context)   -> reader.readFromImport(importFile(context))
-            else                        -> emptyList()
+            shizukuAvailable          -> reader.readViaShizuku()
+            rootAvailable             -> reader.readViaRoot()
+            importFileExists(context) -> reader.readFromImport(importFile(context))
+            else                      -> emptyList()
         }
     }
 

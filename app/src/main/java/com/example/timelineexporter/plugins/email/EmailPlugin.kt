@@ -24,7 +24,9 @@ class EmailPlugin : MessageSourcePlugin {
         contactLookup: ((String) -> String?)?
     ): List<Message> {
         val reader = EmailReader()
-        // TODO: decide at runtime whether to use Gmail API or IMAP
+        // TODO: decide at runtime which source to use (Gmail or IMAP), based
+        //       on the configured account type.  For now both return empty lists
+        //       so calling both is a no-op.
         return reader.readViaGmail() + reader.readViaImap()
     }
 }
