@@ -1,0 +1,117 @@
+/* ============================================================
+   timeline.css — styles specific to timeline.html
+   ============================================================ */
+
+/* ── Page structure ──────────────────────────────────────── */
+.timeline-page {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 12px 48px;
+}
+
+.page-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--color-primary);
+    color: #fff;
+    padding: 16px 20px 12px;
+    margin: 0 -12px 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.page-header h1 {
+    font-size: 1.3rem;
+    margin-bottom: 2px;
+}
+.page-header .subtitle {
+    font-size: 0.85rem;
+    opacity: 0.85;
+    margin-bottom: 10px;
+}
+
+/* ── Toolbar ─────────────────────────────────────────────── */
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+.toolbar input[type="text"] {
+    flex: 1;
+    min-width: 180px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    outline: none;
+}
+.toolbar label {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    white-space: nowrap;
+}
+.toolbar input[type="date"] {
+    padding: 5px 8px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    outline: none;
+}
+
+/* ── Timeline message card ───────────────────────────────── */
+#timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.msg {
+    background: var(--color-surface);
+    border-radius: var(--radius);
+    padding: 10px 14px;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    border-left: 4px solid transparent;
+}
+.msg:hover {
+    background: #F9FBE7;
+    transform: translateX(2px);
+}
+.msg.incoming { border-left-color: var(--color-primary); }
+.msg.outgoing { border-left-color: var(--color-secondary); }
+
+.msg-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+}
+.msg-meta .time {
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+}
+.msg-meta .thread-name {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--color-primary);
+}
+.msg .sender {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 2px;
+}
+.msg .text {
+    font-size: 0.92rem;
+    color: var(--color-text);
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* ── Hidden messages (filtered out) ─────────────────────── */
+.msg.hidden {
+    display: none;
+}

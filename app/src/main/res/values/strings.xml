@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SMS Forensic Viewer</string>
+    <string name="app_subtitle">Export your messages as an interactive HTML timeline</string>
+
+    <string name="step1_label">Step 1 — Read messages from device</string>
+    <string name="btn_generate">📖 Generate Timeline</string>
+
+    <string name="step2_label">Step 2 — Write HTML files to Documents/TimelineExport/</string>
+    <string name="btn_export">📄 Export HTML</string>
+
+    <string name="btn_open">📂 Open Output Folder</string>
+
+    <string name="status_ready">Tap "Generate Timeline" to begin.</string>
+
+    <!-- Permission rationale -->
+    <string name="perm_sms_rationale">READ_SMS permission is required to access your messages.</string>
+    <string name="perm_contacts_rationale">READ_CONTACTS permission is required to show contact names.</string>
+</resources>
