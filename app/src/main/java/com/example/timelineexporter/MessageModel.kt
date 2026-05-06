@@ -17,7 +17,7 @@ data class Message(
 )
 
 enum class MessageType {
-    SMS, MMS
+    SMS, MMS, LINE, EMAIL
 }
 
 /**

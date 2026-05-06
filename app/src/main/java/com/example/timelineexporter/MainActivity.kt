@@ -15,6 +15,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import com.example.timelineexporter.plugins.PluginManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -118,11 +119,9 @@ class MainActivity : AppCompatActivity() {
                         Utils.lookupName(phone, contactMap)
                     }
 
-                    val smsMessages = SmsReader(contentResolver).readAll(lookup)
-                    val mmsMessages = MmsReader(contentResolver).readAll(lookup)
-
-                    val allMessages = (smsMessages + mmsMessages)
-                        .sortedBy { it.timestamp }
+                    val allMessages = PluginManager.loadAllMessages(
+                        this@MainActivity, lookup
+                    )
                     val threads = Utils.groupIntoThreads(allMessages, contactMap)
 
                     Pair(allMessages, threads)
