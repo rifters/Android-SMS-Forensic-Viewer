@@ -9,6 +9,10 @@
 </head>
 <body class="thread-page">
 
+    <!--
+        Replace "group" class with "direct" for 1-to-1 conversations.
+        The .group class applies a purple header.
+    -->
     <div class="thread-header <!-- group OR direct -->">
         <a href="timeline.html" class="back-btn">← Timeline</a>
         <h1><!-- THREAD NAME --></h1>
@@ -23,7 +27,7 @@
             <div class="bubble">
                 <div class="sender">Mom</div>
                 <div class="text">We're waiting</div>
-                <div class="time">2:14 PM</div>
+                <div class="time">2024-05-06 14:14</div>
             </div>
         </div>
 
@@ -32,13 +36,29 @@
             <div class="bubble">
                 <div class="sender">Me</div>
                 <div class="text">Be right there!</div>
-                <div class="time">2:15 PM</div>
+                <div class="time">2024-05-06 14:15</div>
             </div>
         </div>
+
+        With MMS attachment badges:
+        <div id="msg_8844" class="message incoming">
+            <div class="bubble">
+                <div class="sender">Mom</div>
+                <div class="text">Check this out</div>
+                <div class="attachments">
+                    <span class="attachment image-att">📷 photo.jpg</span>
+                </div>
+                <div class="time">2024-05-06 14:16</div>
+            </div>
+        </div>
+
+        Date separator between days:
+        <div class="date-separator"><span>Monday, 6 May 2024</span></div>
         ─────────────────────────────────────────────
 
-        When navigated to via #msg_<id>, the thread.js script will
-        add the class "highlight" and scroll the element into view.
+        When navigated to via #msg_<id>, thread.js will:
+          1. Colorize each incoming sender with a unique color (colorizeParticipants)
+          2. Add the class "highlight" and scroll the targeted element into view
     -->
     <div id="messages">
         <!-- Generated message bubbles go here -->

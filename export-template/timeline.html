@@ -11,7 +11,7 @@
 
     <div class="page-header">
         <h1>📱 Message Timeline</h1>
-        <p class="subtitle"><!-- MESSAGE COUNT --> messages across <!-- THREAD COUNT --> conversations</p>
+        <p class="subtitle"><!-- MESSAGE COUNT --> messages &nbsp;·&nbsp; <!-- THREAD COUNT --> conversations &nbsp;·&nbsp; extracted <!-- EXPORT DATE (YYYY-MM-DD HH:MM) --></p>
         <div class="toolbar">
             <input type="text" id="search" placeholder="🔍 Search messages…" oninput="filterMessages(this.value)">
             <label for="dateJump">Jump to date:</label>
@@ -22,16 +22,32 @@
     <!--
         Each message block follows this pattern:
         ─────────────────────────────────────────────
+        <div class="date-separator"><span>Monday, 6 May 2024</span></div>
+
         <div class="msg incoming" data-ts="1715000000000" data-thread="12"
              onclick="openThread(12, 8842)"
              title="Mom — 2:14 PM">
             <div class="msg-meta">
-                <span class="time">2:14 PM</span>
+                <span class="time">2024-05-06 14:14</span>
                 <span class="thread-name">Mom</span>
                 <span class="type-badge sms">sms</span>
             </div>
             <div class="sender">Mom</div>
             <div class="text">We're waiting</div>
+        </div>
+
+        Group chat example (add .group-tag and extra participants in thread-name):
+        <div class="msg incoming" data-ts="1715000100000" data-thread="7"
+             onclick="openThread(7, 9001)"
+             title="Family Group — 2:15 PM">
+            <div class="msg-meta">
+                <span class="time">2024-05-06 14:15</span>
+                <span class="group-tag">GROUP</span>
+                <span class="thread-name">Family Group</span>
+                <span class="type-badge mms">mms</span>
+            </div>
+            <div class="sender">Dad</div>
+            <div class="text">On our way!</div>
         </div>
         ─────────────────────────────────────────────
     -->
